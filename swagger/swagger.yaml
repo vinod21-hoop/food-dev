@@ -1,0 +1,49 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Food Delivery API
+basePath: /
+schemes:
+  - http
+paths:
+  /calculate-price:
+    post:
+      tags:
+        - "pricing"
+      summary: "Calculate delivery price"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Request body"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              zone:
+                type: "string"
+              organization_id:
+                type: "string"
+              total_distance:
+                type: "integer"
+              item_type:
+                type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          schema:
+            type: "object"
+            properties:
+              total_price:
+                type: "number"
+                format: "float"
+        '400':
+          description: "Bad request"
+          schema:
+            type: "object"
+            properties:
+              error:
+                type: "string"
